@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Controllers {
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/home")
+	@RequestMapping({ "/", "/home" })
 	public String query(Principal principal, Model model) {
 		if (principal != null) {
 			if (principal instanceof OAuth2Authentication) {
