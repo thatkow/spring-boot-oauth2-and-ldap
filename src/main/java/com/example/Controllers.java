@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class Controllers {
@@ -32,14 +31,19 @@ public class Controllers {
 		return "home";
 	}
 
-	@RequestMapping(path = { "/portal" }, method = RequestMethod.GET)
+	@RequestMapping(path = { "/portal", "/login" })
 	public String login() {
 		return "portal";
 	}
 
-	@RequestMapping(path = { "/login" }, method = RequestMethod.GET)
+	@RequestMapping(path = { "/login?logout" })
 	public String loginLogout() {
-		return "redirect:/portal";
+		return "portal";
+	}
+
+	@RequestMapping(path = { "/login?error" })
+	public String loginError() {
+		return "portal";
 	}
 
 }
