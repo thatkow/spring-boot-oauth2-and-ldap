@@ -7,7 +7,7 @@
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
 <!-- <meta name="description" content="" /> -->
 <!-- <meta name="viewport" content="width=device-width" /> -->
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <base href="/" />
 <link rel="stylesheet" type="text/css"
@@ -18,19 +18,32 @@
 <link rel="stylesheet" type="text/css" media="all"
 	th:href="@{/css/index.css}" />
 <script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
-
+<script type="text/javascript">
+	angular.module("app", []).controller("home", function($http) {
+		self.logout = function() {
+			$http.post('/logout', {}).success(function() {
+				self.authenticated = false;
+				$location.path("/");
+				$window.location.href = '/';
+			}).error(function(data) {
+				console.log("Logout failed")
+				self.authenticated = false;
+			});
+		};
+	});
+</script>
 </head>
 <body ng-app="app" ng-controller="home as home">
-	<div class="container logosdiv" ng-show="!home.authenticated">
-		<a th:href="@{/login/google}" 	><img th:src="@{/img/google.png}" 			/></a> <br />
-		<a th:href="@{/login/facebook}" 	><img th:src="@{/img/facebook.png}" 	/></a> <br />
-		<a th:href="@{/login/github}" 	><img th:src="@{/img/github.png}" 	/></a>
-		<form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
+	<div class="container info">
+		<span th:text="'Logged in as: '+${name}"> </span>
+		<div th:if="${email != null}">
+			<span th:text="'Email: '+${email}"> </span>
+		</div>
+		<div>
+			<form th:action="@{/login?logout}" method="post">
+				<button class="submit">Logout</button>
+			</form>
+		</div>
 	</div>
-	
 </body>
 </html>

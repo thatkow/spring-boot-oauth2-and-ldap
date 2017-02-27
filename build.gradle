@@ -45,6 +45,10 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.springframework.boot:spring-boot-devtools")
    
+	compile("org.springframework.ldap:spring-ldap-core")
+	compile("org.springframework.security:spring-security-ldap")
+	compile("org.springframework:spring-tx")
+	compile("com.unboundid:unboundid-ldapsdk")
 	
 	testCompile("org.apache.httpcomponents:httpclient")
 	testCompile("org.springframework.boot:spring-boot-starter-test")
