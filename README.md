@@ -11,4 +11,8 @@ gradle build
 java -jar build/libs/authenticating-oauth2-0.1.0.jar
 ```
 
+# Configuring LDAP
+
+You can either use the supporting [ldap server](https://github.com/thatkow/ldap_example_server), or configure application.properties to point to your own.
+
 
