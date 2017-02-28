@@ -16,33 +16,19 @@
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" media="all"
-	th:href="@{/css/index.css}" />
-<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
-<script type="text/javascript">
-	angular.module("app", []).controller("home", function($http) {
-		self.logout = function() {
-			$http.post('/logout', {}).success(function() {
-				self.authenticated = false;
-				$location.path("/");
-				$window.location.href = '/';
-			}).error(function(data) {
-				console.log("Logout failed")
-				self.authenticated = false;
-			});
-		};
-	});
-</script>
+	th:href="@{/static/css/home.css}" />
 </head>
-<body ng-app="app" ng-controller="home as home">
+<body>
 	<div class="container info">
-		<span th:text="'Logged in as: '+${name}"> </span>
+			<img th:if="${picture != null}" th:src="${picture}" class="picture"/>
+		<div th:if="${username != null}">
+			Logged in as: <span th:text="${username}"> </span>
+		</div>
 		<div th:if="${email != null}">
 			<span th:text="'Email: '+${email}"> </span>
 		</div>
 		<div>
-			<form th:action="@{/login?logout}" method="post">
-				<button class="submit">Logout</button>
-			</form>
+			<a th:href="@{/logout}"><button class="btn btn-primary">Logout</button></a>
 		</div>
 	</div>
 </body>

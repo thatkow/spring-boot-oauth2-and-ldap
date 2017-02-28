@@ -7,7 +7,7 @@
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
 <!-- <meta name="description" content="" /> -->
 <!-- <meta name="viewport" content="width=device-width" /> -->
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <base href="/" />
 <link rel="stylesheet" type="text/css"
@@ -16,21 +16,29 @@
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" media="all"
-	th:href="@{/css/index.css}" />
+	th:href="@{/css/portal.css}" />
 <script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
 
 </head>
 <body ng-app="app" ng-controller="home as home">
 	<div class="container logosdiv" ng-show="!home.authenticated">
-		<a th:href="@{/login/google}" 	><img th:src="@{/img/google.png}" 			/></a> <br />
-		<a th:href="@{/login/facebook}" 	><img th:src="@{/img/facebook.png}" 	/></a> <br />
-		<a th:href="@{/login/github}" 	><img th:src="@{/img/github.png}" 	/></a>
-		<form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
+		<a th:if="${googleBeanDefined}" th:href="@{/login/google}" class="logo"><img
+			th:src="@{/img/google.png}" /></a> <br /> <a
+			th:if="${facebookBeanDefined}" th:href="@{/login/facebook}" class="logo"><img
+			th:src="@{/img/facebook.png}" /></a> <br /> <a
+			th:if="${githubBeanDefined}" th:href="@{/login/github}" class="logo"><img
+			th:src="@{/img/github.png}" /></a>
+		<div class="logo" th:if="${ldapBeanDefined}">
+			<form th:action="@{/login}" method="post" class="ldap">
+				<h5 th:if="${ldapSourceName} != null" th:text="${ldapSourceName}" class="ldapTitle" /> <img
+					th:if="${ldapSourceImage != null} " th:src="${ldapSourceImage}"
+					class="ldapImage" />
+				<br />
+					<input type="text" name="username" placeholder="username" /> <br />
+					<input type="password" placeholder="password" name="password" /> <br />
+					<input class="submit" type="submit" value="Sign In" /></form>
+		</div>
 	</div>
-	
+
 </body>
 </html>

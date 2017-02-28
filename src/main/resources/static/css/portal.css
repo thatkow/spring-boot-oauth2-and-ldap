@@ -1,0 +1,42 @@
+.logosdiv {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 10px 10px 10px;
+	margin: auto;
+}
+
+.center {
+	margin: auto;
+	padding: 10px;
+}
+
+.picture {
+	float: right;
+	margin: 0 0 100px 100px;
+	width: 200px;
+	height: 200px;
+	padding: 10px 10px 10px 10px;
+}
+
+.ldap {
+	border-style: solid;
+	padding: 5px 5px 5px 5px;
+}
+
+.submit {
+	float: right;
+}
+
+
+.ldapImage{
+	max-width: 150px;
+	max-height: 150px;
+	float: middle;
+}
